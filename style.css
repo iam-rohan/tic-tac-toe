@@ -1,3 +1,52 @@
-.test {
-  color: red;
+:root {
+  --body-background: #eeeeee;
+  --primary-color: #686d76;
+  --secondary-color: #373a40;
+  --subtle-color: #dc5f00;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--subtle-color);
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  background-color: var(--body-background);
+  text-align: center;
+}
+
+.container {
+  display: grid;
+  height: 100vh;
+  grid-template-rows: 2fr 7fr;
+}
+
+.turn {
+  background-color: var(--secondary-color);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  width: 40%;
+  height: 90%;
+  gap: 1%;
+  padding: 5%;
+  justify-self: center;
+}
+
+.cell {
+  background-color: var(--subtle-color);
+  color: var(--body-background);
+  font-size: 5rem;
 }
