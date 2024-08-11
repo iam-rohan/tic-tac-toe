@@ -24,7 +24,62 @@ body {
 .container {
   display: grid;
   height: 100vh;
-  grid-template-rows: 1fr 8fr 1fr;
+  grid-template-rows: 1.5fr 1fr 8fr 1fr;
+}
+
+.player-input {
+  background-color: var(--secondary-color);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.usernames {
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+}
+
+.usernames input {
+  margin: 0 5% 0 2%;
+  padding: 1%;
+}
+
+.usernames button {
+  background-color: var(--subtle-color);
+  border-radius: 12px;
+  color: #000;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px 15px;
+  text-align: center;
+  transition: 200ms;
+  width: 100%;
+  box-sizing: border-box;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.usernames button:not(:disabled):hover,
+.usernames button:not(:disabled):focus {
+  outline: 0;
+  background: #f4e603;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+}
+
+.usernames button:active {
+  background-color: var(--subtle-color);
+}
+
+.usernames button:disabled {
+  filter: saturate(0.2) opacity(0.5);
+  -webkit-filter: saturate(0.2) opacity(0.5);
+  cursor: not-allowed;
 }
 
 .turn {
@@ -39,7 +94,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  width: 40%;
+  width: 30%;
   height: 90%;
   gap: 1%;
   padding: 5%;

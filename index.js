@@ -43,7 +43,8 @@ function Cell() {
 }
 
 // Function controlling the flow and state of the game
-function GameController(player1Name = "Player1", player2Name = "Player2") {
+function GameController(player1Name, player2Name) {
+  console.log(player1Name);
   const game = Gameboard();
 
   // Creating Player details and assigning them sign marks
@@ -61,6 +62,7 @@ function GameController(player1Name = "Player1", player2Name = "Player2") {
   // Switching active player
   const switchPlayerTurn = () => {
     activePlayer = activePlayer === players[0] ? players[1] : players[0];
+    document.querySelector(".turn").textContent = `${activePlayer.name}'s turn...`;
   };
 
   const getActivePlayer = () => activePlayer;
@@ -134,6 +136,13 @@ function GameController(player1Name = "Player1", player2Name = "Player2") {
         game.getBoard()[i][j].addSign(" ");
       }
     }
+    let ticBoard = document.querySelector(".board");
+
+    ticBoard.style.display = "none";
+
+    document.querySelector(".turn").innerHTML = "Another Round? Click Start!";
+    document.querySelector("form").style.display = "flex";
+    document.querySelector(".container").style.gridTemplateRows = "1fr 8fr 1fr";
 
     activePlayer = players[0];
   }
@@ -149,13 +158,12 @@ function GameController(player1Name = "Player1", player2Name = "Player2") {
 }
 
 function ScreenController() {
-  const game = GameController();
+  let game;
   const container = document.querySelector(".container");
   const boardDiv = document.querySelector(".board");
-  const playerTurnDiv = document.querySelector(".turn");
   const declare = document.createElement("div");
   declare.classList.add("declare");
-  declare.textContent = "Go on play...";
+  declare.textContent = "Enter the Player names above and hit start...";
   container.appendChild(declare);
 
   const updateScreen = () => {
@@ -163,8 +171,6 @@ function ScreenController() {
 
     const board = game.getBoard();
     const activePlayer = game.getActivePlayer();
-
-    playerTurnDiv.textContent = `${activePlayer.name}'s turn...`;
 
     board.forEach((row, rowindex) => {
       row.forEach((cell, colindex) => {
@@ -192,7 +198,27 @@ function ScreenController() {
   }
   boardDiv.addEventListener("click", clickHandler);
 
-  updateScreen();
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector(".usernames");
+    const player1Input = document.querySelector("#player1");
+    const player2Input = document.querySelector("#player2");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const player1Name = player1Input.value.trim() || "Player1";
+      const player2Name = player2Input.value.trim() || "Player2";
+
+      game = GameController(player1Name, player2Name);
+      updateScreen();
+      form.style.display = "none";
+      let board = document.querySelector(".board");
+      board.style.display = "grid";
+      declare.innerHTML = "Go on play...";
+      document.querySelector(".container").style.gridTemplateRows = "1.5fr 1fr 8fr 1fr";
+      document.querySelector(".turn").textContent = `${player1Name}'s turn...`;
+    });
+  });
 }
 
 ScreenController();
