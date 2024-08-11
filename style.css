@@ -2,7 +2,8 @@
   --body-background: #eeeeee;
   --primary-color: #686d76;
   --secondary-color: #373a40;
-  --subtle-color: #dc5f00;
+  --subtle-color: #cfd843;
+  --cell-color: #d85454;
 }
 
 *,
@@ -23,7 +24,7 @@ body {
 .container {
   display: grid;
   height: 100vh;
-  grid-template-rows: 2fr 7fr;
+  grid-template-rows: 1fr 8fr 1fr;
 }
 
 .turn {
@@ -47,6 +48,16 @@ body {
 
 .cell {
   background-color: var(--subtle-color);
-  color: var(--body-background);
+  color: var(--cell-color);
   font-size: 5rem;
+  font-weight: 700;
+}
+
+.declare {
+  font-size: 1.5rem;
+  background-color: var(--secondary-color);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
